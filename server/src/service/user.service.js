@@ -1,20 +1,19 @@
 const config = require('../../config.json');
 const jsonWebToken = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const db = require('../db/db');
+const db = require('../db/db').dbInstance;
 
 async function createUser(userJson) {
-    console.log(`Request Body: ${userJson}`);
-    const user = {
+    console.log(`Request Body: ${userJson.email}`);
+    let user = {
         'email': userJson.email,
-        'username': userJson.username,
     };
 
-    if (userJson.password) {
-        user.hash = bcrypt.hashSync(userJson.password, 10);
+    if (userJson['password']) {
+        user['hash'] = bcrypt.hashSync(userJson['password'], 10);
     }
 
-    await db.insertUser(JSON.stringify(user));
+    await db.insertUser(user);
 }
 
 exports.userRelated = {

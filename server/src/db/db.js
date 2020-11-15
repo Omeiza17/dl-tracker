@@ -7,9 +7,10 @@ dbInstance.ensureIndex({fieldName: 'email', unique: true}, function (err) {
 });
 
 function insertUser(userMap) {
+    console.log(userMap);
     dbInstance.insert(userMap, function (error, newUser) {
         console.log(newUser);
     })
 }
 
-exports = {insertUser};
+exports.dbInstance = {insertUser};

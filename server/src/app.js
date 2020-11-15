@@ -4,17 +4,12 @@ const expressJwt = require('express-jwt');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
 const config = require('../config.json');
 
 // defining the Express app
 const app = express();
 // adding Helmet to enhance API's security
 app.use(helmet());
-
-//
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json({ type: 'application/*+json' }))
 
 // user related controller
 const users = require('./controller/user.controller');

@@ -1,13 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const parser = bodyParser.json();
-const users = express.Router();
-const userService = require('../service/user.service').userRelated;
 
-users.post('/register',  function (req, res, next) {
+
+const userService = require('../service/user.service').userRelated;
+const users = express.Router();
+
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+const jsonParser = bodyParser.json();
+
+users.post('/register', jsonParser, function (req, res, next) {
     const body = req.body;
-    console.log(`Request: ${body}`);
-    userService.createUser(res.body).then(() => res.status(201).send({message: 'User created'}));
+    userService.createUser(body).then(() => res.status(201).send({message: 'User created'}));
     next();
 });
 
