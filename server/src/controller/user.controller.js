@@ -14,4 +14,11 @@ users.post('/register', jsonParser, function (req, res, next) {
     next();
 });
 
+users.post('/authenticate', jsonParser, (req, res, next) => {
+    userService.authenticateUser(req.body, function (callbackResponse) {
+        res.status(200).send({data: callbackResponse});
+    });
+
+});
+
 exports.users = users;

@@ -13,6 +13,7 @@ app.use(helmet());
 
 // user related controller
 const users = require('./controller/user.controller');
+const courseWorks = require('./controller/coursework.controller');
 
 // enabling CORS for all requests
 app.use(cors());
@@ -31,6 +32,7 @@ app.use(morgan('combined'));
 
 
 app.use('/api/users/', users.users);
+app.use('/api/courseworks/', courseWorks.coureWorks);
 
 // server port
 const PORT = 3030

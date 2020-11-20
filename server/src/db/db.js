@@ -8,8 +8,14 @@ dbInstance.ensureIndex({fieldName: 'email', unique: true}, function (err) {
 
 function insertUser(userMap) {
     dbInstance.insert(userMap, function (error, newUser) {
-        console.log(newUser);
     })
 }
 
-exports.dbInstance = {insertUser};
+function getUser(email, callback) {
+    dbInstance.findOne({email: email}, function (error, userDoc) {
+        console.log(userDoc);
+        return callback(userDoc);
+    });
+}
+
+exports.dbInstance = {insertUser, getUser};
