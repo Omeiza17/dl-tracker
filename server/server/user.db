@@ -1,0 +1,2 @@
+{"email":"test@gmail.com","hash":"$2a$10$2EFL/Jk5UYtHUUC7Zu10AeohZRLa19V0bUK5pzn9QhuFIvSdBG9sG","_id":"kwrTdVbvjmrdpx9r","createdAt":{"$$date":1607712180028},"updatedAt":{"$$date":1607712180028}}
+{"$$indexCreated":{"fieldName":"email","unique":true,"sparse":false}}

@@ -1,7 +1,7 @@
 const config = require('../../config.json');
 const jsonWebToken = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const db = require('../db/db').dbInstance;
+const db = require('../db/user_db').dbInstance;
 
 async function createUser(userJson) {
     let user = {
@@ -19,7 +19,6 @@ function authenticateUser(userJson, callback) {
     db.getUser(userJson.email, function (result) {
         if (result && bcrypt.compareSync(userJson.password, result.hash)) {
             const token = jsonWebToken.sign({sub: result._id}, config.secret_key, {expiresIn: 10 * 60});
-            console.log(token);
             callback({
                 token: token,
                 email: result.email,
